@@ -1,5 +1,5 @@
 <?php
-include_once("M2Lconnexion.php");
+include_once("M2Lconnexion.lib.php");
 include_once("../javascript/formations.js");
 
 ?>
@@ -16,8 +16,9 @@ include_once("../javascript/formations.js");
         <?php include'M2Lbandeau.inc.php'; ?>
         <?php include'M2Lliens.inc.php'; ?>
         <!-- <form> -->
+        <?php // descriptionFormationsCompletes(); ?>
         <?php descriptionFormationsPartielles(); ?>
-        <?php descriptionOneFormationComplete(2); ?>
+        <?php // descriptionOneFormationComplete(2); ?>
     </div>
 </body>
 </html>

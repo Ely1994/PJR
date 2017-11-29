@@ -1,5 +1,5 @@
 <?php
-include_once("../dataacces/M2Lreqsql.php");
+include_once("../dataacces/M2Lreqsql.lib.php");
 
 
 function connexion() { // DATAACCES : connexion à la base de données dbpjr
@@ -37,20 +37,23 @@ function descriptionFormationsCompletes() { // FONCTION : affichage complet de "
     $tab = M2LgetTableformation();
     foreach($tab as $line) { 
         ?>
-        <section> <h2>Formation n°
+        <section>Détails de la <h2>Formation n°
         <?php echo $line['id']; ?>
         de 
         <?php echo $line['nom']; ?>
         </h2><p>
         <?php echo $line['description']; ?>
-        <br><strong>Description plus détaillée : </strong>Début de la formation le 
+        <br>L'endroit de rendez-vous est :<br>
+        <?php echo $line['lieu']; ?>
+        <br><strong>Dates : </strong>Début de la formation le 
         <?php echo $line['date']; ?>
-         avec pour durée 
+        et fin de la formation le 
+        <?php echo $line['date_fin']; ?>
+        avec pour durée totale
         <?php echo $line['duree_jour']; ?>
-         jours, avec 
+         jours. Il y a  
         <?php echo $line['duree_heure']; ?>
-         heures par jour. L'endroit de rendez-vous est :<br>
-       <?php echo $line['lieu']; ?>
+         heures de formation par jour.
         <br><strong>Prérequis : </strong>
         <?php echo $line['prerequis']; ?>
         </p></section>
@@ -63,24 +66,27 @@ function descriptionOneFormationComplete($i) { // FONCTION : affichage complet d
         if($ittm['id'] == $i) { $line = $ittm; }
     }
     ?>
-    <section> <h2>Formation n°
-    <?php echo $line['id']; ?>
-    de 
-    <?php echo $line['nom']; ?>
-    </h2><p>
-    <?php echo $line['description']; ?>
-    <br><strong>Description plus détaillée : </strong>Début de la formation le 
-    <?php echo $line['date']; ?>
-     avec pour durée 
-    <?php echo $line['duree_jour']; ?>
-     jours, avec 
-    <?php echo $line['duree_heure']; ?>
-     heures par jour. L'endroit de rendez-vous est :<br>
-    <?php echo $line['lieu']; ?>
-    <br><strong>Prérequis : </strong>
-    <?php echo $line['prerequis']; ?>
-    </p></section>
-    <?php
+        <section>Détails de la <h2>Formation n°
+        <?php echo $line['id']; ?>
+        de 
+        <?php echo $line['nom']; ?>
+        </h2><p>
+        <?php echo $line['description']; ?>
+        <br>L'endroit de rendez-vous est :<br>
+        <?php echo $line['lieu']; ?>
+        <br><strong>Dates : </strong>Début de la formation le 
+        <?php echo $line['date']; ?>
+        et fin de la formation le 
+        <?php echo $line['date_fin']; ?>
+        avec pour durée totale
+        <?php echo $line['duree_jour']; ?>
+         jours. Il y a  
+        <?php echo $line['duree_heure']; ?>
+         heures de formation par jour.
+        <br><strong>Prérequis : </strong>
+        <?php echo $line['prerequis']; ?>
+        </p></section>
+        <?php
 }
 
 ?>
