@@ -23,13 +23,21 @@ include_once("../dataacces/M2Lformation.lib.php");
         <section>
             <?php
             $tabl = M2LreqPrep(3,"cours de Basket");
-            print_r($tabl);
+            //print_r($tabl);
             foreach($tabl as $line) {
 
                 echo $line['id']."nvjzeovnejzk".$line['nom'];
             }
+            // cours, fonctions de hashages
+            ?> <br> <?php 
+            $hash = md5("toto");
+            echo $hash; 
+            ?> <br> <?php
             
+            $hash2 = password_hash("toto", 1);
+            echo password_verify("toto",$hash2);
             ?>
+            
         </section>
     </div>
 </body>

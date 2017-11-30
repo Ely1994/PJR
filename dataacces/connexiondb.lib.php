@@ -29,25 +29,26 @@ function showFromDB() {
 }
 
 function connecteOupa($pseudo, $code) { // fonction utilisé our la vérification du pseudo+identifiant
+	$code = md5($code);
 	$dbh = connexion();
-	$sql = requete3($pseudo, $code); // requete SQL qui renvoie la liste de personnes avec pseudo et code identique.
-	$connecte = $dbh->query($sql); // $connecte renvoie le tableau associatif de la table 'personnes' avec 
+    $sql = "SELECT * FROM personnes WHERE :pseudo = pseudo AND :code = code";
+
+    $stmt = $dbh->prepare($sql);
+
+    $stmt->BindValue(':pseudo', $pseudo);
+    $stmt->BindValue(':code', $code);
+
+    $retour = $stmt->execute();
 	
-	
-	$prepare($sql);
-	$stmt->BindValue(':pseudo', $pseudo);
-	$stmt->BindValue(':code', $code);
-	$stmt->execute();
-	
-	$connecte2 = $connecte->fetchAll();
-	//echo count($connecte2);
-	//print_r($connecte2);
-	//foreach($connecte2 as $e) {
-	//	echo $e['pseudo'];
-	//}
-	if(count($connecte2) > 0) {
+    // if($retour) {
+    $retour = $stmt->fetchAll();
+    // }
+
+    $dbh = null;
+	print_r($retour);
+	if(count($retour) > 0) {
 		return TRUE;
 	} else {
-		return FALSE; }
+		return FALSE; } 
 }
 ?>
