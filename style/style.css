@@ -17,7 +17,7 @@ body {
 	/*background: url("./img/ffxintro2.jpg") repeat-x top left, url("./img/607.jpg") fixed no-repeat 65%;*/
 	/*background-size: 34%, cover;*/
 	/* The background image */
-    background-image: url("../img/607.jpg");
+    background-image: url("../image/607.jpg");
     /* Set background image to fixed (don't scroll along with the page) */
     background-attachment: fixed;
     /* Center the background image */
@@ -40,7 +40,7 @@ h3 {
 }
 
 header {
-	background-image: url("../img/445.jpg");
+	background-image: url("../image/445.jpg");
     /* Set background image to fixed (don't scroll along with the page) */
     background-position: center;
     /* Set the background image to no repeat */

@@ -9,6 +9,9 @@ function requete2() {
 
 function requete3($pseudo, $code) {
 	return "SELECT * FROM personnes WHERE :pseudo = pseudo AND :code = code";
+	bindValue(':pseudo',"Abcde");
 }
+
+
 // note : pour cracker le mot de passe, on remplace $pseudo par xx' OR 1=1 OR 'yy et $code par le même code. Et pif on est connecté. xx' OR 1='1
 ?>

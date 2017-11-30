@@ -1,35 +1,20 @@
 <?php
-include_once("../dataacces/M2Lreqsql.lib.php");
-
-
-function connexion() { // DATAACCES : connexion à la base de données dbpjr
-	$host = "localhost";
-	$dbname = "dbpjr";
-	$utilisateur = "root";
-	$mdp = "";
-	// la connexion :
-	$pdo = new PDO('mysql:host='.$host.';dbname='.$dbname, $utilisateur, $mdp) or die ("Prob connexion server");
-	return $pdo;
-}
-
-function M2LgetTableformation() { // DATAACCES : accession à tout le contenu de formation
-    $dbh = connexion();
-    $sql = getForm1();
-    $values = $dbh->query($sql);
-	return $values;
-}
+include_once("M2Lconnexion.lib.php");
 
 function descriptionFormationsPartielles() { // FONCTION : afichage partiel de "formation"
     $tab = M2LgetTableformation();
+    $num = 0;
     foreach($tab as $line) { 
-        ?>
+        // $num = $line['id']; echo "ecris".$num."()"; ?>
         <section> <h2>Formation n°
         <?php echo $line['id']; ?>
         de 
         <?php echo $line['nom']; ?>
         </h2><p>
         <?php echo $line['description']; ?>
-        </p></section>
+        </p>
+        <!-- <input type="button" value="Plus d'informations ici" name="$num" onclick="ecris(<?php // echo $num; ?>)" /> -->
+        </section>
         <?php
     }
 }

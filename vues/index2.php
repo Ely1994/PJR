@@ -1,5 +1,6 @@
 ﻿<?php
-include_once("connexiondb.php");
+include_once("../dataacces/connexiondb.lib.php");
+include_once("../dataacces/requetes.lib.php");
 
 ?>
 
@@ -7,7 +8,7 @@ include_once("connexiondb.php");
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="../style/style.css" />
 	<title>index2</title>
 </head>
 <body>

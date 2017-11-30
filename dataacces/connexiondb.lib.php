@@ -1,5 +1,5 @@
 <?php
-include_once("../dataacces/requetes.php");
+include_once("requetes.lib.php");
 
 
 function connexion() {
