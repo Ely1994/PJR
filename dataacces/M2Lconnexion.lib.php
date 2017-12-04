@@ -21,7 +21,7 @@ function M2LgetTableformation() { // DATAACCES : accession à tout le contenu de
 
 function connectmd5() {
     $dbh = connexion();
-    $sql = "IN"
+    $sql = "IN";
 }
 
 function M2LreqPrep($id, $nom) { // REQUETE PREPAREE pour TEST, récup id et nom
@@ -40,7 +40,7 @@ function M2LreqPrep($id, $nom) { // REQUETE PREPAREE pour TEST, récup id et nom
     // }
 
     $dbh = null;
-    print_r($retour);
+    // print_r($retour);
     return $retour;
 }
 

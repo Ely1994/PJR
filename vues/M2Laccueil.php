@@ -2,6 +2,8 @@
 include_once("../dataacces/M2Lformation.lib.php");
 // include_once("../javascript/formations.js");
 
+setcookie('moncookie', 8);
+
 ?>
 
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -21,23 +23,12 @@ include_once("../dataacces/M2Lformation.lib.php");
         <?php descriptionFormationsPartielles(); ?>
         <?php // descriptionOneFormationComplete(2); ?>
         <section>
-            <?php
-            $tabl = M2LreqPrep(3,"cours de Basket");
-            //print_r($tabl);
-            foreach($tabl as $line) {
-
-                echo $line['id']."nvjzeovnejzk".$line['nom'];
-            }
-            // cours, fonctions de hashages
-            ?> <br> <?php 
-            $hash = md5("toto");
-            echo $hash; 
-            ?> <br> <?php
-            
-            $hash2 = password_hash("toto", 1);
-            echo password_verify("toto",$hash2);
-            ?>
-            
+            <h2>Crois-tu aux cookies du côté obscur ?</h2>
+            <?php if(isset($_COOKIE['moncookie'])==TRUE) {
+                echo "Le cookie existe".$_COOKIE['moncookie'];
+            } else {
+                echo "oh non pas de cookie";
+            }  ?>
         </section>
     </div>
 </body>
