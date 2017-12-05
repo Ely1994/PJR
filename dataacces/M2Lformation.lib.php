@@ -13,7 +13,6 @@ function descriptionFormationsPartielles() { // FONCTION : afichage partiel de "
         </h2><p>
         <?php echo $line['description']; ?>
         </p>
-        <!-- <input type="button" value="Plus d'informations ici" name="$num" onclick="ecris(<?php // echo $num; ?>)" /> -->
         </section>
         <?php
     }

@@ -1,10 +1,13 @@
 <?php
-
+session_start();
 include_once("../dataacces/M2Lformation.lib.php");
 // include_once("../javascript/formations.js");
 
-setcookie('moncookie', 8, time()+3600);
-
+if(isset($_COOKIE['holycookie'])==TRUE) {
+    setcookie('holycookie', ($_COOKIE['holycookie']+1));
+} else {
+    setcookie('holycookie', 1);
+}
 ?>
 
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -66,6 +69,7 @@ setcookie('moncookie', 8, time()+3600);
             echo password_verify("toto",$hash2);
             ?>    
         </section>
+        <?php include 'M2Lfooter.inc.php'; ?>
     </div>
 </body>
 </html>

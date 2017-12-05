@@ -1,9 +1,20 @@
 <?php
+session_start();
+if(isset($_POST['ps']) && isset($_POST['mp'])) {
+    $_SESSION['pseudo'] = $_POST['ps'];
+    $_SESSION['code'] = $_POST['mp'];
+} else { 
+    
+}
+
 include_once("../dataacces/M2Lformation.lib.php");
 // include_once("../javascript/formations.js");
 
-setcookie('moncookie', 8);
-
+if(isset($_COOKIE['darkcookie'])==TRUE) {
+    setcookie('darkcookie', ($_COOKIE['darkcookie']+1));
+} else {
+    setcookie('darkcookie', 1);
+}
 ?>
 
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -23,13 +34,9 @@ setcookie('moncookie', 8);
         <?php descriptionFormationsPartielles(); ?>
         <?php // descriptionOneFormationComplete(2); ?>
         <section>
-            <h2>Crois-tu aux cookies du côté obscur ?</h2>
-            <?php if(isset($_COOKIE['moncookie'])==TRUE) {
-                echo "Le cookie existe".$_COOKIE['moncookie'];
-            } else {
-                echo "oh non pas de cookie";
-            }  ?>
+            
         </section>
+        <?php include 'M2Lfooter.inc.php'; ?>
     </div>
 </body>
 </html>

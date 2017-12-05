@@ -4,5 +4,8 @@ function alerte() {
 }
 
 function ecris($a) {
-    descriptionOneFormationComplete($a);
+    alert('alerte disant '.$a);
+}
+function ecris() {
+    alert('bpooboo');
 }
