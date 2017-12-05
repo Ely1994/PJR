@@ -12,7 +12,8 @@
         <div class="mep">
             <?php
             if(isset($_SESSION['pseudo']) || isset($_SESSION['mdp'])) {
-                echo "Salut ".$_SESSION['pseudo'].".\nComment vas-tu ?";
+                echo "Salut ".$_SESSION['pseudo'].".";
+                
             } else {
             ?>
                 <p>Connectez-vous :</p>

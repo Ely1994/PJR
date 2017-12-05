@@ -8,13 +8,12 @@ if(isset($_POST['ps']) && isset($_POST['mp'])) {
 }
 
 include_once("../dataacces/M2Lformation.lib.php");
-// include_once("../javascript/formations.js");
 
-if(isset($_COOKIE['darkcookie'])==TRUE) { // On s'occupe du dark cookie
+if(isset($_COOKIE['darkcookie'])==TRUE) {
     setcookie('darkcookie', ($_COOKIE['darkcookie']+1));
 } else {
     setcookie('darkcookie', 1);
-} // Fin du programme malveillant dark cookie
+}
 ?>
 
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -30,9 +29,6 @@ if(isset($_COOKIE['darkcookie'])==TRUE) { // On s'occupe du dark cookie
     <div id="conteneur">
         <?php include'M2Lbandeau.inc.php'; ?>
         <?php include'M2Lliens.inc.php'; ?>
-        <?php // descriptionFormationsCompletes(); ?>
-        <?php descriptionFormationsPartielles(); ?>
-        <?php // descriptionOneFormationComplete(2); ?>
         <section>
             
         </section>
