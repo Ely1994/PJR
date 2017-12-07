@@ -11,18 +11,12 @@
         </div>
         <div class="mep">
             <?php
-            if(isset($_SESSION['pseudo']) || isset($_SESSION['mdp'])) {
-                echo "Salut ".$_SESSION['pseudo'].".";
-                
-            } else {
+            if(isset($_SESSION['pseudo']) && (isset($_SESSION['code']))) {
             ?>
-                <p>Connectez-vous :</p>
-                <form method="post" action="M2Laccueil.php">
-                    <label for="pseudo">Pseudo : </label><input type="text" id="ps" name="ps" size="25" placeholder="Pseudo..." maxlength="30" />
-			    	<br><label for="code">Mot de passe : </label><input type="password" id="mp" name="mp" size="25" maxlength="25" />
-		    		<br><input type="submit" name="envoyer" value=" CONNEXION ">   
-                </form>
+                <a href="M2Ldeconnexion.php"><input type="button" value="Déconnexion"></a> 
             <?php
+            } else {
+
             }
             ?>
         </div>

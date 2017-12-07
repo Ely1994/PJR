@@ -1,8 +1,13 @@
 <?php
+// Session start
 session_start();
+// include
 include_once("../dataacces/M2Lformation.lib.php");
-// include_once("../javascript/formations.js");
-
+// appel redirection
+if(!isset($_SESSION['pseudo']) && !isset($_SESSION['code'])) {
+    redirection('http://localhost/pjr/vues/M2Lconnexion.php');
+}
+// incrementation cookie (LIGHT)
 if(isset($_COOKIE['holycookie'])==TRUE) {
     setcookie('holycookie', ($_COOKIE['holycookie']+1));
 } else {

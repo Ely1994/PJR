@@ -1,15 +1,13 @@
 <?php
+// Session start
 session_start();
-if(isset($_POST['ps']) && isset($_POST['mp'])) {
-    $_SESSION['pseudo'] = $_POST['ps'];
-    $_SESSION['code'] = $_POST['mp'];
-} else { 
-    
-}
-
+// include
 include_once("../dataacces/M2Lformation.lib.php");
-// include_once("../javascript/formations.js");
-
+// appel redirection
+if(!isset($_SESSION['pseudo']) && !isset($_SESSION['code'])) {
+    redirection('http://localhost/pjr/vues/M2Lconnexion.php');
+}
+// incrémentation cookie (DARK)
 if(isset($_COOKIE['darkcookie'])==TRUE) { // On s'occupe du dark cookie
     setcookie('darkcookie', ($_COOKIE['darkcookie']+1));
 } else {

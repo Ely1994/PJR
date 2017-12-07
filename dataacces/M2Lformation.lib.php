@@ -73,4 +73,9 @@ function descriptionOneFormationComplete($i) { // FONCTION : affichage complet d
         <?php
 }
 
+
+function redirection($cible) { //fonction de redirection sur une page 
+    header('Location:'.$cible, false);
+}
+
 ?>
