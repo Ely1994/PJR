@@ -2,7 +2,12 @@
 // Session start
 session_start();
 // include
-include_once("../dataacces/M2Lformation.lib.php");
+include_once "../dataacces/M2Lformation.lib.php" ;
+include_once "../dataacces/Rectangle.inc.php" ;
+include_once "../dataacces/Livre.inc.php" ;
+include_once "../dataacces/Librairie.inc.php" ;
+
+
 // appel redirection
 if(!isset($_SESSION['pseudo']) && !isset($_SESSION['code'])) {
     redirection('http://localhost/pjr/vues/M2Lconnexion.php');
@@ -27,7 +32,43 @@ if(isset($_COOKIE['holycookie'])==TRUE) {
 <body>
     <div id="conteneur">
         <?php include'M2Lbandeau.inc.php'; ?>
-        <?php include'M2Lliens.inc.php'; ?>  
+        <?php include'M2Lliens.inc.php'; ?> 
+        <section> 
+            <?php
+            $livre = new Livre("AAA", 10);
+            echo $livre->afficheLivre();
+
+            $libra = new Librairie();
+            $libra->addLivre(new Livre("EEE", 14));
+            $libra->addLivre(new Livre("FFF", 18));
+            $libra->addLivre(new Livre("GGG", 4));
+            
+            $libra->afficheTout();
+            echo $libra->moyenne();
+
+            ?>
+        </section>
+        <section>
+            <h2>Test rectangle</h2>
+            <?php 
+                echo Rectangle::staAff();
+                echo Rectangle::aze(10,10);
+                $tab = array(new Rectangle(4,5), new Rectangle(8,4), new Rectangle(12,5));
+                foreach($tab as $line) {
+                    echo $line->afficher();
+                }
+                $tab2 = array();
+                array_push($tab2, new Rectangle(8,4));
+                array_push($tab2, new Rectangle(8,6));
+                array_push($tab2, new Rectangle(8,8));
+                array_push($tab2, new Rectangle(8,9));
+                foreach($tab2 as $line) {
+                    echo $line->afficher();
+                }
+                $rect = new Rectangle(10,5);
+                echo $rect->afficher();
+            ?>
+        </section>
         <section>
             <h2>Petite fonction sur les requetes préparées</h2>
             <?php

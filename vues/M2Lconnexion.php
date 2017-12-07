@@ -43,7 +43,7 @@ if(isset($_COOKIE['darkcookie'])==TRUE) { // On s'occupe du dark cookie
             <form method="post" action="M2Lconnexion.php">
                 <label for="pseud">Pseudo : </label><input type="text" id="pseud" name="pseud" size="25" placeholder="Pseudo..." maxlength="30" />
 		    	<br><label for="cod">Mot de passe : </label><input type="password" id="cod" name="cod" size="25" maxlength="25" />
-                <br><input type="submit" name="envoyer" value=" CONNEXION ">   
+                <br><input type="submit" name="envoyer" value=" CONNEXION ">
             </form>
         <?php
         }
