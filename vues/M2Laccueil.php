@@ -2,16 +2,16 @@
 // Session start
 session_start();
 // include
-include_once("../dataacces/M2Lformation.lib.php");
+include_once "../dataacces/M2Lformation.lib.php";
 // appel redirection
 if(!isset($_SESSION['pseudo']) && !isset($_SESSION['code'])) {
     redirection('http://localhost/pjr/vues/M2Lconnexion.php');
 }
 // incrémentation cookie (DARK)
 if(isset($_COOKIE['darkcookie'])==TRUE) { // On s'occupe du dark cookie
-    setcookie('darkcookie', ($_COOKIE['darkcookie']+1));
+    setcookie('darkcookie', ($_COOKIE['darkcookie']+1), time()+3600*24*365);
 } else {
-    setcookie('darkcookie', 1);
+    setcookie('darkcookie', 1, time()+3600*24*365);
 } // Fin du programme malveillant dark cookie
 ?>
 
@@ -52,20 +52,6 @@ if(isset($_COOKIE['darkcookie'])==TRUE) { // On s'occupe du dark cookie
                 }
             } 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        
         ?>
         <?php // descriptionFormationsCompletes(); ?>
         <?php //descriptionFormationsPartielles(); ?>

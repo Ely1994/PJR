@@ -23,11 +23,11 @@ function descriptionFormationsCompletes() { // FONCTION : affichage complet de "
     $tab = M2LgetTableformation();
     foreach($tab as $line) { 
         ?>
-        <section>Détails de la <h2>Formation n°
+        <section><p>Formation n°
         <?php echo $line['id']; ?>
-        de 
+         : <strong>
         <?php echo $line['nom']; ?>
-        </h2><p>
+        </strong> - 
         <?php echo $line['description']; ?>
         <br>L'endroit de rendez-vous est :<br>
         <?php echo $line['lieu']; ?>
@@ -52,11 +52,9 @@ function descriptionOneFormationComplete($i) { // FONCTION : affichage complet d
         if($ittm['id'] == $i) { $line = $ittm; }
     }
     ?>
-        <section><h2>Formation n°
-        <?php echo $line['id']; ?>
-        de 
+        <section><p>Formation : <strong>
         <?php echo $line['nom']; ?>
-        </h2><p>
+        </strong> - 
         <?php echo $line['description']; ?>
         <br>L'endroit de rendez-vous est :<br>
         <?php echo $line['lieu']; ?>

@@ -13,8 +13,10 @@
             <?php
             if(isset($_SESSION['pseudo']) && (isset($_SESSION['code']))) {
             ?>
-                <p>Salut <?php echo $_SESSION['pseudo']; ?></p>
-                <a href="M2Ldeconnexion.php"><input type="button" value="Déconnexion"></a> 
+                <a href="M2Lprofile.php"><?php echo $_SESSION['pseudo']; ?></a>
+                <p>Clique 
+                <a href="M2Ldeconnexion.php"><input type="button" value="ici"></a>
+                 pour te déconnecter</p>
             <?php
             } else {
 

@@ -7,7 +7,7 @@ Donc comme ça, l'utilisateur est déconnectée.
 // Session start
 session_start();
 // include
-include_once("../dataacces/M2Lformation.lib.php");
+include_once "../dataacces/M2Lformation.lib.php";
 // appel redirection
 if(!isset($_SESSION['pseudo']) && !isset($_SESSION['code'])) {
     redirection('http://localhost/pjr/vues/M2Lconnexion.php');

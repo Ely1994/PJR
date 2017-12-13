@@ -2,7 +2,7 @@
 // Session start
 session_start();
 // include
-include_once("../dataacces/M2Lformation.lib.php");
+include_once "../dataacces/M2Lformation.lib.php";
 // gestion de la connexion
 if(isset($_POST['pseud']) && isset($_POST['cod'])) {
     $_SESSION['pseudo'] = $_POST['pseud'];
@@ -12,9 +12,9 @@ if(isset($_POST['pseud']) && isset($_POST['cod'])) {
 }
 // incrémentation cookie (DARK)
 if(isset($_COOKIE['darkcookie'])==TRUE) { // On s'occupe du dark cookie
-    setcookie('darkcookie', ($_COOKIE['darkcookie']+1));
+    setcookie('darkcookie', ($_COOKIE['darkcookie']+1), time()+3600*24*365);
 } else {
-    setcookie('darkcookie', 1);
+    setcookie('darkcookie', 1, time()+3600*24*365);
 } // Fin du programme malveillant dark cookie
 ?>
 

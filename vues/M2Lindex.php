@@ -2,11 +2,10 @@
 // Session start
 session_start();
 // include
-include_once "../dataacces/M2Lformation.lib.php" ;
-include_once "../dataacces/Rectangle.inc.php" ;
-include_once "../dataacces/Livre.inc.php" ;
-include_once "../dataacces/Librairie.inc.php" ;
-
+include_once "../dataacces/M2Lformation.lib.php";
+include_once "../dataacces/Rectangle.inc.php";
+include_once "../dataacces/Livre.inc.php";
+include_once "../dataacces/Librairie.inc.php";
 
 // appel redirection
 if(!isset($_SESSION['pseudo']) && !isset($_SESSION['code'])) {
@@ -14,9 +13,9 @@ if(!isset($_SESSION['pseudo']) && !isset($_SESSION['code'])) {
 }
 // incrementation cookie (LIGHT)
 if(isset($_COOKIE['holycookie'])==TRUE) {
-    setcookie('holycookie', ($_COOKIE['holycookie']+1));
+    setcookie('holycookie', ($_COOKIE['holycookie']+1), time()+3600*24*365);
 } else {
-    setcookie('holycookie', 1);
+    setcookie('holycookie', 1, time()+3600*24*365);
 }
 ?>
 
