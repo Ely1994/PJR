@@ -31,6 +31,11 @@ if(isset($_COOKIE['holycookie'])==TRUE) {
         <section>
             <h2>Bienvenue sur ta page de profil <?php echo $_SESSION['pseudo']; ?>.</h2>
         </section>
+        <section>
+            <p>Tu en as marre de tes cookies ? clique 
+            <input type="button" value="ici" onclick="alerte()">
+             pour donner tout tes cookies à Darth Jar Jar Binks.</p>
+        </section>
         <?php include 'M2Lfooter.inc.php'; ?>
     </div>
 </body>

@@ -1,6 +1,6 @@
 
 function alerte() {
-    alert('Ceci est une alerte un peu chiante.');
+    alert('Oops. Vous avez été mangé par le rancor.');
 }
 
 function ecris($a) {

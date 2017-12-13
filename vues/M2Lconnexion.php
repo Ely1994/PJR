@@ -10,12 +10,6 @@ if(isset($_POST['pseud']) && isset($_POST['cod'])) {
     $_POST['pseud'] = null;
     $_POST['cod'] = null;
 }
-// incrémentation cookie (DARK)
-if(isset($_COOKIE['darkcookie'])==TRUE) { // On s'occupe du dark cookie
-    setcookie('darkcookie', ($_COOKIE['darkcookie']+1), time()+3600*24*365);
-} else {
-    setcookie('darkcookie', 1, time()+3600*24*365);
-} // Fin du programme malveillant dark cookie
 ?>
 
 <?xml version="1.0" encoding="ISO-8859-1"?>
