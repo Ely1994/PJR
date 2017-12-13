@@ -95,6 +95,15 @@ function descriptFormations($requete) {
         <?php echo $line['description']; ?>
         </p>
         <label>Je veux les details : </label><input type="checkbox" name="checkbox[]" value="<?php echo $line['id']; ?>">
+        <?php
+            
+            $date = date("d-m-Y"); 
+            if(strtotime($line['date']) >= strtotime($date)) {
+                echo "Valide";
+            } else {
+                echo "Date dépassée";
+            }
+        ?>
         </section>
         <?php
     }
@@ -104,7 +113,7 @@ function descriptFormations($requete) {
 function redirection($cible) { //fonction de redirection sur une page 
     header('Location:'.$cible, false);
 }
-//nejkzbvek
+
 function ladate() {
     $date = date("d-m-Y");
     echo "Nous sommes le $date";
