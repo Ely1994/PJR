@@ -1,18 +1,20 @@
 <?php
 include_once("M2Lconnexion.lib.php");
 
-function descriptionFormationsPartielles() { // FONCTION : afichage partiel de "formation"
+function descriptionFormationsPartielles() { // FONCTION : afichage partiel de "formation" OUTDATED
     $tab = M2LgetTableformation();
     $num = 0;
     foreach($tab as $line) { 
         // $num = $line['id']; echo "ecris".$num."()"; ?>
-        <section> <h2>Formation n°
-        <?php echo $line['id']; ?>
-        de 
+        <section> <h2>Formation : 
+        <?php //echo $line['id']; ?>
+        <!-- de -->
         <?php echo $line['nom']; ?>
         </h2><p>
         <?php echo $line['description']; ?>
         </p>
+        <input type="button" value=" details " onclick="descriptionOneFormationComplete(<?php echo $line['id']; ?>)" /><br/>
+        
         </section>
         <?php
     }
@@ -50,7 +52,7 @@ function descriptionOneFormationComplete($i) { // FONCTION : affichage complet d
         if($ittm['id'] == $i) { $line = $ittm; }
     }
     ?>
-        <section>Détails de la <h2>Formation n°
+        <section><h2>Formation n°
         <?php echo $line['id']; ?>
         de 
         <?php echo $line['nom']; ?>
@@ -73,9 +75,44 @@ function descriptionOneFormationComplete($i) { // FONCTION : affichage complet d
         <?php
 }
 
+function descriptFormations($requete) {
+    $dbh = connexion();
+    $values = $dbh->query($requete);
+    $tableau = $values->fetchAll();
+    ?>
+    <section>
+        <form action="M2Laccueil.php" method="post">
+        <label>Clique ici </label>
+        <input type="submit" name="envoyer" value="Valider">
+        <label> pour voir les détails des formations que tu as coché.</label>
+    </section>
+    <?php
+    foreach($tableau as $line) {
+        ?>
+        <section><p>Formation : <strong>
+        <?php echo $line['nom']; ?>
+        </strong>. 
+        <?php echo $line['description']; ?>
+        </p>
+        <label>Je veux les details : </label><input type="checkbox" name="checkbox[]" value="<?php echo $line['id']; ?>">
+        </section>
+        <?php
+    }
+    ?> </select> </form> <?php
+}
 
 function redirection($cible) { //fonction de redirection sur une page 
     header('Location:'.$cible, false);
 }
+//nejkzbvek
+function ladate() {
+    $date = date("d-m-Y");
+    echo "Nous sommes le $date";
+}
 
+function lheure() {
+    $heure = date("H:i");
+    echo "il est $heure";
+}
+    
 ?>
