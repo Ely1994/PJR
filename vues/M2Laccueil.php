@@ -29,13 +29,43 @@ if(isset($_COOKIE['darkcookie'])==TRUE) { // On s'occupe du dark cookie
         <?php include'M2Lbandeau.inc.php'; ?>
         <?php include'M2Lliens.inc.php'; ?>
         <?php // Là on s'occupe de l'affichage des formations.
-        if(isset($_POST['checkbox'])) { // Si le mec a coché des cases, les affiches de façon complète
-            foreach($_POST['checkbox'] as $checkline) {
-                descriptionOneFormationComplete($checkline);
-            }
+
+        if(!isset($_POST['checkbox'])) { // Si le mec a coché des cases, les affiches de façon complète
+            if(isset($_POST['viewold'])) {
+                if($_POST['viewold'] == "1") {
+                    descriptionFormationsCompletes();
+                }
+            } else {
+                descMain("SELECT id, nom, description, date, duree_jour, duree_heure, lieu, prerequis, DATE_ADD(date, INTERVAL (duree_jour - 1) DAY) as date_fin FROM formation ORDER BY id DESC;");                    
+            } 
         } else { // Sinon, affiche toutes les formations de façon partielle.
-            descriptFormations("SELECT id, nom, description, date, duree_jour, duree_heure, lieu, prerequis, DATE_ADD(date, INTERVAL (duree_jour - 1) DAY) as date_fin FROM formation ORDER BY id DESC;");
+            if(isset($_POST['viewold'])) {
+                if($_POST['viewold'] == "1") {
+                    foreach($_POST['checkbox'] as $checkline) {
+                        descriptionOneFormationComplete($checkline);
+                    }
+                    descriptionFormationsCompletes();
+                } else {
+                    foreach($_POST['checkbox'] as $checkline) {
+                        descriptionOneFormationComplete($checkline);
+                    }
+                }
+            } 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        
         ?>
         <?php // descriptionFormationsCompletes(); ?>
         <?php //descriptionFormationsPartielles(); ?>

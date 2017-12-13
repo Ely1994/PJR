@@ -75,37 +75,44 @@ function descriptionOneFormationComplete($i) { // FONCTION : affichage complet d
         <?php
 }
 
-function descriptFormations($requete) {
+function descMain($requete) {
     $dbh = connexion();
     $values = $dbh->query($requete);
     $tableau = $values->fetchAll();
     ?>
     <section>
         <form action="M2Laccueil.php" method="post">
-        <label>Clique ici </label>
-        <input type="submit" name="envoyer" value="Valider">
-        <label> pour voir les détails des formations que tu as coché.</label>
+        <p><label>Clique ici </label>
+        <input type="submit" name="envoyer" value="Voir les Détails">
+        <label> pour voir les détails des formations que tu as coché.</label></p>
+        <p><label>Si tu veux voir toutes les formations même celles qui sont déjà finies, valide_moi ça : </label>
+        <select name="viewold">
+            <option value="0"> </option>
+            <option value="1">Je veux voir tous les anciennes formations !</option>
+		</select>
+        </p>
     </section>
     <?php
     foreach($tableau as $line) {
-        ?>
-        <section><p>Formation : <strong>
-        <?php echo $line['nom']; ?>
-        </strong>. 
-        <?php echo $line['description']; ?>
-        </p>
-        <label>Je veux les details : </label><input type="checkbox" name="checkbox[]" value="<?php echo $line['id']; ?>">
-        <?php
-            
-            $date = date("d-m-Y"); 
-            if(strtotime($line['date']) >= strtotime($date)) {
-                echo "Valide";
-            } else {
-                echo "Date dépassée";
-            }
-        ?>
-        </section>
-        <?php
+        $date = date("d-m-Y"); 
+        if(strtotime($line['date']) >= strtotime($date)) {
+            // echo "Valide";
+            ?>
+            <section><p>Formation : <strong>
+            <?php echo $line['nom']; ?>
+            </strong>. 
+            <?php echo $line['description']; ?>
+            </p>
+            <label>Je veux les details : </label><input type="checkbox" name="checkbox[]" value="<?php echo $line['id']; ?>">
+            <?php
+               
+            ?>
+            </section>
+            <?php
+        } else {
+            // echo "Date dépassée";
+
+        }
     }
     ?> </select> </form> <?php
 }
