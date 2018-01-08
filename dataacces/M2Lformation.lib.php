@@ -2,25 +2,66 @@
 include_once("M2Lconnexion.lib.php");
 
 function descriptionFormationsPartielles() { // FONCTION : afichage partiel de "formation" OUTDATED
-    $tab = M2LgetTableformation();
-    $num = 0;
+    $tab = M2LgetFormation();
+    ?>
+    <section>
+        <form action="M2Laccueil.php" method="post">
+        <p>Voici la liste des formations qui n'ont pas encore commencés. Vous pouvez cocher les cases puis cliquer sur le bouton "details" en bas de la page pour avoir plus de d'informations sur les formations cochés.</p>
+        <p><label>Si tu veux voir toutes les formations, même celles qui sont déjà finies, clique ici : </label><input type="submit" name="toutAfficher" value="tout afficher"></p>
+    </section>
+    <?php
     foreach($tab as $line) { 
-        // $num = $line['id']; echo "ecris".$num."()"; ?>
-        <section> <h2>Formation : 
-        <?php //echo $line['id']; ?>
-        <!-- de -->
+        $date = date("d-m-Y"); 
+        if(strtotime($line['date_debut']) >= strtotime($date)) {
+            // echo "Valide";
+            ?>
+            <section><p>Formation : <strong>
+            <?php echo $line['nom']; ?>
+            </strong>. 
+            <?php echo $line['description']; ?>
+            </p>
+            <label>Je veux les details : </label><input type="checkbox" name="checkbox[]" value="<?php echo $line['id']; ?>">
+            </section>
+            <?php
+        } else {
+            // echo "Date dépassée";
+        }
+    }
+    ?>
+    </select>
+    <section>
+    <label>Clique ici pour voir les détails des formations que tu as coché : </label><input type="submit" name="envoyer" value="Voir les Détails">
+    </section></form> <?php
+}
+function descriptionFormationsPartiellesAnciennes() { // FONCTION : afichage partiel de "formation" OUTDATED
+    $tab = M2LgetFormation();
+    ?>
+    <section>
+        <form action="M2Laccueil.php" method="post">
+        <p>Voici la liste de toutes les formations.</p>
+        <p><label>Si tu veux voir seulement les formations qui n'ont pas étés commencés, <a href="./M2Laccueil.php">clique ici</a>.</p>
+    </section>
+    <?php
+    foreach($tab as $line) { 
+        ?>
+        <section><p>Formation : <strong>
         <?php echo $line['nom']; ?>
-        </h2><p>
+        </strong>. 
         <?php echo $line['description']; ?>
         </p>
-        <input type="button" value=" details " onclick="descriptionOneFormationComplete(<?php echo $line['id']; ?>)" /><br/>
-        
+        <label>Je veux les details : </label><input type="checkbox" name="checkbox[]" value="<?php echo $line['id']; ?>">
         </section>
         <?php
     }
+    ?>
+    </select>
+    <section>
+    <label>Clique ici pour voir les détails des formations que tu as coché : </label><input type="submit" name="envoyer" value="Voir les Détails">
+    </section>
+    </form> <?php
 }
 function descriptionFormationsCompletes() { // FONCTION : affichage complet de "formation"
-    $tab = M2LgetTableformation();
+    $tab = M2LgetFormation();
     foreach($tab as $line) { 
         ?>
         <section><p>Formation n°
@@ -32,7 +73,7 @@ function descriptionFormationsCompletes() { // FONCTION : affichage complet de "
         <br>L'endroit de rendez-vous est :<br>
         <?php echo $line['lieu']; ?>
         <br><strong>Dates : </strong>Début de la formation le 
-        <?php echo $line['date']; ?>
+        <?php echo $line['date_debut']; ?>
         et fin de la formation le 
         <?php echo $line['date_fin']; ?>
         avec pour durée totale
@@ -47,7 +88,7 @@ function descriptionFormationsCompletes() { // FONCTION : affichage complet de "
     }
 }
 function descriptionOneFormationComplete($i) { // FONCTION : affichage complet d'UNE ligne de "formation"
-    $tab = M2LgetTableformation();
+    $tab = M2LgetFormation();
     foreach($tab as $ittm) {
         if($ittm['id'] == $i) { $line = $ittm; }
     }
@@ -59,7 +100,7 @@ function descriptionOneFormationComplete($i) { // FONCTION : affichage complet d
         <br>L'endroit de rendez-vous est :<br>
         <?php echo $line['lieu']; ?>
         <br><strong>Dates : </strong>Début de la formation le 
-        <?php echo $line['date']; ?>
+        <?php echo $line['date_debut']; ?>
         et fin de la formation le 
         <?php echo $line['date_fin']; ?>
         avec pour durée totale
@@ -73,47 +114,6 @@ function descriptionOneFormationComplete($i) { // FONCTION : affichage complet d
         <?php
 }
 
-function descMain($requete) {
-    $dbh = connexion();
-    $values = $dbh->query($requete);
-    $tableau = $values->fetchAll();
-    ?>
-    <section>
-        <form action="M2Laccueil.php" method="post">
-        <p><label>Clique ici </label>
-        <input type="submit" name="envoyer" value="Voir les Détails">
-        <label> pour voir les détails des formations que tu as coché.</label></p>
-        <p><label>Si tu veux voir toutes les formations même celles qui sont déjà finies, valide_moi ça : </label>
-        <select name="viewold">
-            <option value="0"> </option>
-            <option value="1">Je veux voir tous les anciennes formations !</option>
-		</select>
-        </p>
-    </section>
-    <?php
-    foreach($tableau as $line) {
-        $date = date("d-m-Y"); 
-        if(strtotime($line['date']) >= strtotime($date)) {
-            // echo "Valide";
-            ?>
-            <section><p>Formation : <strong>
-            <?php echo $line['nom']; ?>
-            </strong>. 
-            <?php echo $line['description']; ?>
-            </p>
-            <label>Je veux les details : </label><input type="checkbox" name="checkbox[]" value="<?php echo $line['id']; ?>">
-            <?php
-               
-            ?>
-            </section>
-            <?php
-        } else {
-            // echo "Date dépassée";
-
-        }
-    }
-    ?> </select> </form> <?php
-}
 
 function redirection($cible) { //fonction de redirection sur une page 
     header('Location:'.$cible, false);

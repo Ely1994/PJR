@@ -10,9 +10,9 @@ function connexion() { // DATAACCES : connexion à la base de données dbpjr
 	return $pdo;
 }
 
-function M2LgetTableformation() { // DATAACCES : accession à tout le contenu de formation
+function M2LgetFormation() { // DATAACCES : accession à tout le contenu de formation
     $dbh = connexion();
-    $sql = "SELECT id, nom, description, date, duree_jour, duree_heure, lieu, prerequis, DATE_ADD(date, INTERVAL (duree_jour - 1) DAY) as date_fin FROM formation ORDER BY id DESC;";
+    $sql = "SELECT id, nom, description, date_debut, duree_jour, duree_heure, lieu, prerequis, DATE_ADD(date_debut, INTERVAL (duree_jour - 1) DAY) as date_fin FROM formation ORDER BY id DESC;";
 
     $values = $dbh->query($sql);
     $value2 = $values->fetchAll();

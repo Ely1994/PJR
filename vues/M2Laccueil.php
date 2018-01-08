@@ -28,27 +28,28 @@ if(isset($_COOKIE['darkcookie'])==TRUE) { // On s'occupe du dark cookie
     <div id="conteneur">
         <?php include'M2Lbandeau.inc.php'; ?>
         <?php include'M2Lliens.inc.php'; ?>
+        
         <?php // Là on s'occupe de l'affichage des formations.
-
         if(!isset($_POST['checkbox'])) { // Si le mec a coché des cases, les affiches de façon complète
-            if(isset($_POST['viewold'])) {
-                if($_POST['viewold'] == "1") {
-                    descriptionFormationsCompletes();
-                }
+            if(isset($_POST['toutAfficher'])) {
+                //if($_POST['toutA'] == "1") {
+                    descriptionFormationsPartiellesAnciennes();
+                //}
             } else {
-                descMain("SELECT id, nom, description, date, duree_jour, duree_heure, lieu, prerequis, DATE_ADD(date, INTERVAL (duree_jour - 1) DAY) as date_fin FROM formation ORDER BY id DESC;");                    
+                descriptionFormationsPartielles();
             } 
         } else { // Sinon, affiche toutes les formations de façon partielle.
             if(isset($_POST['viewold'])) {
                 if($_POST['viewold'] == "1") {
-                    foreach($_POST['checkbox'] as $checkline) {
-                        descriptionOneFormationComplete($checkline);
+                    foreach($_POST['checkbox'] as $line) {
+                        descriptionOneFormationComplete($line);
                     }
-                    descriptionFormationsCompletes();
+                } else if ($_POST['viewold'] == "0") {
+                    foreach($_POST['checkbox'] as $line) {
+                        descriptionOneFormationComplete($line);
+                    }
                 } else {
-                    foreach($_POST['checkbox'] as $checkline) {
-                        descriptionOneFormationComplete($checkline);
-                    }
+
                 }
             } 
         }
