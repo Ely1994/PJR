@@ -49,21 +49,7 @@ if(isset($_COOKIE['darkcookie'])==TRUE) { // On s'occupe du dark cookie
             } else {
                 ?> <section>Si ce message s'affiche, c'est qu'il y a une possibilité qui n'a pas été envisagée.</section> <?php
             }
-            /*
-            if(isset($_POST['viewold'])) {
-                if($_POST['viewold'] == "1") {
-                    foreach($_POST['checkbox'] as $line) {
-                        descriptionOneFormationComplete($line);
-                    }
-                } else if ($_POST['viewold'] == "0") {
-                    foreach($_POST['checkbox'] as $line) {
-                        descriptionOneFormationComplete($line);
-                    }
-                } else {
-
-                }
-            } */
-        }
+        } // - - - - - - - - - - - - - - - - - - - - - - - - - FIN de l'affichage des formations - - - - - - - - - - - - - - - - - - - - - - - - - 
         ?>
         <?php // descriptionFormationsCompletes(); ?>
         <?php //descriptionFormationsPartielles(); ?>
