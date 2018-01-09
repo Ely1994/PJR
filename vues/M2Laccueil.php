@@ -29,16 +29,27 @@ if(isset($_COOKIE['darkcookie'])==TRUE) { // On s'occupe du dark cookie
         <?php include'M2Lbandeau.inc.php'; ?>
         <?php include'M2Lliens.inc.php'; ?>
         
-        <?php // Là on s'occupe de l'affichage des formations.
-        if(!isset($_POST['checkbox'])) { // Si le mec a coché des cases, les affiches de façon complète
-            if(isset($_POST['toutAfficher'])) {
-                //if($_POST['toutA'] == "1") {
-                    descriptionFormationsPartiellesAnciennes();
-                //}
-            } else {
+        <?php // - - - - - - - - - - - - - - - - - - - - - - - - - Là on s'occupe de l'affichage des formations. - - - - - - - - - - - - - - - - - - - - - - - - - 
+        if(!isset($_POST['checkbox'])) { // Checkbox n'existe PAS. Rien n'est coché.
+            if(isset($_POST['toutAfficher'])) { // Rien n'est coché, bouton "voir les détails" appuyé => affichage de base.
+                descriptionFormationsPartiellesAnciennes();
+            } elseif (isset($_POST['envoyer'])) { // Rien n'est coché, bouton "envoyer" appuyé => rien ne se passe.
+                ?> <section><strong>> Vous avez cliqué sur "Voir les détails" sans cocher de cases. Vous avez été redirigé.</strong></section> <?php
                 descriptionFormationsPartielles();
-            } 
-        } else { // Sinon, affiche toutes les formations de façon partielle.
+            } else { // Rien n'est coché, aucun bouton n'a été appuyé => affichage de base.
+                descriptionFormationsPartielles();
+            }
+        } else { // Checkbox existe. Il y a donc des valeurs cochés sous forme de tableau, obtenues grâce à la variable $_POTS['checkbox'].
+            if(isset($_POST['toutAfficher'])) {
+                descriptionFormationsPartiellesAnciennes();
+            } elseif(isset($_POST['envoyer'])) {
+                foreach($_POST['checkbox'] as $line) {
+                    descriptionOneFormationComplete($line);
+                }
+            } else {
+                ?> <section>Si ce message s'affiche, c'est qu'il y a une possibilité qui n'a pas été envisagée.</section> <?php
+            }
+            /*
             if(isset($_POST['viewold'])) {
                 if($_POST['viewold'] == "1") {
                     foreach($_POST['checkbox'] as $line) {
@@ -51,7 +62,7 @@ if(isset($_COOKIE['darkcookie'])==TRUE) { // On s'occupe du dark cookie
                 } else {
 
                 }
-            } 
+            } */
         }
         ?>
         <?php // descriptionFormationsCompletes(); ?>
